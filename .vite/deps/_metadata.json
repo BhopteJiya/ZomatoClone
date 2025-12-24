@@ -1,0 +1,40 @@
+{
+  "hash": "f5c47751",
+  "configHash": "c8d71198",
+  "lockfileHash": "bfa49e9e",
+  "browserHash": "55908352",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "523aa05d",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1c5c6c45",
+      "needsInterop": true
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "ded1d298",
+      "needsInterop": false
+    },
+    "@mui/icons-material/KeyboardDoubleArrowDown": {
+      "src": "../../node_modules/@mui/icons-material/esm/KeyboardDoubleArrowDown.js",
+      "file": "@mui_icons-material_KeyboardDoubleArrowDown.js",
+      "fileHash": "6493e251",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-BBGTHJQX": {
+      "file": "chunk-BBGTHJQX.js"
+    },
+    "chunk-OOF7LIVO": {
+      "file": "chunk-OOF7LIVO.js"
+    }
+  }
+}
