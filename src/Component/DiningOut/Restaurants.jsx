@@ -1,5 +1,7 @@
 import React from "react";
 import { restaurants } from "../../assets/assets";
+import StarIcon from '@mui/icons-material/Star';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 const Restaurants = () => {
   return (
@@ -21,18 +23,24 @@ const Restaurants = () => {
           <div className="p-4">
             <div className="flex justify-between items-center">
               <h3 className="font-semibold text-lg">{res.name}</h3>
-              <span className="bg-green-600 text-white text-sm px-2 py-1 rounded">
+              <span className="bg-green-700 text-white text-sm px-1 py-1 rounded">
                  {res.rating}
+                 <span  > 
+                 <StarIcon sx={{ fontSize: "small" }} ></StarIcon>
+                 </span>
               </span>
             </div>
 
             <p className="text-gray-500 text-sm">
               {res.cuisine.join(", ")}
             </p>
+            <div className="flex justify-between" >
 
             <p className="text-gray-400 text-sm mt-1">
               {res.address}
             </p>
+            <p  className="text-gray-400 text-sm mt-1" ><CurrencyRupeeIcon sx={{fontSize:"small"}} />{res.price} for two</p>
+            </div>
 
             <p className="text-gray-500 text-sm mt-1">
                {res.distance}

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Landing";
 import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
 
 const App = () => {
   return (
@@ -13,6 +14,8 @@ const App = () => {
 
         {/* Home Page */}
         <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile></Profile>} />
+
 
       </Routes>
     </BrowserRouter>

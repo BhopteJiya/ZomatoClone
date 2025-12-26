@@ -1,4 +1,3 @@
-import React from 'react'
 import coll1 from "../../assets/Collection-diningout/coll1.avif";
 import coll2 from "../../assets/Collection-diningout/coll2.avif";
 import coll3 from "../../assets/Collection-diningout/coll3.avif";
@@ -70,7 +69,7 @@ const Collection1 = ({cities}) => {
     <p
     className='text-gray-600 mt-3 text-xl'> Explore curated lists of top restaurants, cafes, pubs, and bars in Indore, based on trends
     </p> 
-    <p className=' mt-3 font-semibold text-md'> All collections in {cities}  </p>
+    <button className=' mt-3 font-semibold text-md'> All collections at your place   </button>
     </div>
    <div className="flex gap-6 mt-6 overflow-x-auto scrollbar-hide pb-4">
   {CollectionArray.map((item) => (
