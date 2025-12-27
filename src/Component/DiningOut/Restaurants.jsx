@@ -2,21 +2,30 @@ import React from "react";
 import { restaurants } from "../../assets/assets";
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { useNavigate } from "react-router-dom";
 
 const Restaurants = () => {
+
+  const nav=useNavigate();
+
   return (
     <div>
         <p className=" mt-5 mb-8 text-4xl " >Restaurants</p>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer ">
       {restaurants.map((res) => (
           <div
           key={res.id}
           className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
+          onClick={()=>{
+             console.log("Clicked ID:", res.id);
+            nav(`/resdetail/${res.id}`)}
+          }
           >
           <img
             src={res.image}
             alt={res.name}
+             loading="lazy"
             className="h-48 w-full object-cover"
           />
 

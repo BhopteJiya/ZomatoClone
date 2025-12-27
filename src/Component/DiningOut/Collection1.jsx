@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import coll1 from "../../assets/Collection-diningout/coll1.avif";
 import coll2 from "../../assets/Collection-diningout/coll2.avif";
 import coll3 from "../../assets/Collection-diningout/coll3.avif";
@@ -8,7 +9,9 @@ import coll7 from "../../assets/Collection-diningout/coll7.avif";
 import coll8 from "../../assets/Collection-diningout/coll8.avif";
 
 
-const Collection1 = ({cities}) => {
+const Collection1 = () => {
+
+const nav=useNavigate();
 
   const CollectionArray = [
       {
@@ -76,6 +79,7 @@ const Collection1 = ({cities}) => {
     <div
       key={item.id}
       className="relative w-60 h-70 rounded-xl overflow-hidden cursor-pointer flex-shrink-0"
+      onClick={()=>nav("/detailedcollect")}
     >
       {/* Image */}
       <img

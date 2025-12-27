@@ -9,6 +9,7 @@ import { City } from "country-state-city";
 import { useAuth } from "../../Context/AuthContext";
 import LoginModal from "../Login/LoginModel";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ProfileDropdown from "./ProfileDropdown";
 
 
 const Navbar = () => {
@@ -18,37 +19,40 @@ const Navbar = () => {
   const [mobile, setMobile] = useState(false);
   const { user, logout } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
 
 
 
   return (
     <>
       {/* NAVBAR */}
-      <nav className="w-full bg-white sticky top-0 z-50 shadow-sm">
+      <nav className="w-full bg-white sticky top-0 z-50 shadow-sm cursor-pointer ">
         <div className="flex items-center justify-between px-4 py-4 lg:px-6">
 
           {/* LEFT: Menu + Logo */}
           <div className="flex items-center justify-between w-full lg:w-auto">
-           <div className="lg:hidden">
-  {!user ? (
-    <button onClick={() => setIsSidebarOpen(true)}>
-      <MenuIcon className="text-3xl text-gray-700" />
-    </button>
-  ) : (
-    <div className="flex items-center gap-2 cursor-pointer">
-      <AccountCircleIcon sx={{ fontSize: 28 }} />
-      <span className="text-sm font-medium capitalize">
-        {user.name}
-      </span>
-    </div>
-  )}
-</div>
+            <div className="lg:hidden">
+              {!user ? (
+                <button onClick={() => setIsSidebarOpen(true)}>
+                  <MenuIcon className="text-3xl text-gray-700" />
+                </button>
+              ) : (
+                <div className="flex items-center gap-2 cursor-pointer">
+                  <AccountCircleIcon sx={{ fontSize: 28 }} />
+                  <span className="text-sm font-medium capitalize">
+                    {user.name}
+                  </span>
+                </div>
+              )}
+            </div>
 
 
             <img
               src={blackLogo}
               alt="Zomato"
               className="h-8 cursor-pointer"
+              onClick={()=>nav("")}
             />
           </div>
 
@@ -103,12 +107,19 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <div className="flex items-center gap-2 cursor-pointer">
+                <div className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                >
                   <AccountCircleIcon sx={{ fontSize: 28 }} />
                   <span className="text-gray-700 font-medium capitalize">
                     {user.name}
                   </span>
+                  <ArrowDropDownIcon
+                  />
                 </div>
+                {showDropdown && (
+                  <ProfileDropdown onClose={() => setShowDropdown(false)} />
+                )}
               </>
 
             )}
@@ -172,20 +183,57 @@ const Navbar = () => {
         </div>
 
         {/* MENU ITEMS */}
-        <div className="flex flex-col p-4 gap-4">
+        {/* SIDEBAR AUTH */}
+        <div className="p-4 border-b">
           {!user ? (
-            <button onClick={() => setIsSidebarOpen(true)}>
-              <MenuIcon />
-            </button>
-          ) : (
-            <div className="flex items-center gap-1 cursor-pointer">
-              <AccountCircleIcon sx={{ fontSize: 26 }} />
-              <span className="text-sm capitalize">{user.name}</span>
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={() => {
+                  setShowLogin(true);
+                  setIsSidebarOpen(false);
+                }}
+                className="w-full py-2 rounded-md bg-red-500 text-white font-medium"
+              >
+                Log in
+              </button>
+
+              <button
+                className="w-full py-2 rounded-md border border-gray-300 text-gray-700"
+              >
+                Sign up
+              </button>
             </div>
+          ) : (
+            <div className="flex items-center justify-between"  
+            onClick={() => setShowDropdown(!showDropdown)}>
+              <div className="flex items-center gap-2">
+                <AccountCircleIcon sx={{ fontSize: 28, color: "#6b7280" }} />
+                <span className="font-medium capitalize">
+                  {user.name}
+                </span>
+                 <ArrowDropDownIcon
+      sx={{ fontSize: 22, color: "#6b7280" }}
+    />
+              
+              </div>
+
+              <button
+                onClick={() => {
+                  logout();
+                  setIsSidebarOpen(false);
+                }}
+                className="text-sm text-red-500"
+              >
+                Logout
+              </button>
+               {showDropdown && (
+                  <ProfileDropdown onClose={() => setShowDropdown(false)} />
+                )}
+            </div>
+            
           )}
-
-
         </div>
+
 
       </div>
       {showLogin && (
