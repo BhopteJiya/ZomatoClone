@@ -1,6 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 
 const Layer2 = () => {
+  const sectionRef = useRef(null);
+  const sInView = useInView(sectionRef, { once: true });
+
   return (
     <div className="relative min-h-screen w-full">
 
@@ -12,14 +16,19 @@ const Layer2 = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 h-full grid grid-cols-3 items-center px-20">
+  
+      <div
+        ref={sectionRef}
+        className="relative z-10 h-full grid grid-cols-3 items-center px-20"
+      >
 
         {/* LEFT COLUMN – Burger */}
         <div>
           <img src="/toomato.avif" alt="static" className="w-20" />
+
           <motion.div
             initial={{ x: "-100vw", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            animate={sInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 1.4, ease: "easeOut" }}
             className="flex justify-start"
           >
@@ -30,8 +39,8 @@ const Layer2 = () => {
         {/* CENTER COLUMN – Text */}
         <div>
           <motion.div
-            initial={{ z: -40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: -40, opacity: 0 }}  
+            animate={sInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.4, delay: 0.6 }}
             className="text-center mb-15"
           >
@@ -40,7 +49,7 @@ const Layer2 = () => {
 
           <motion.div
             initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            animate={sInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.4, delay: 0.6 }}
             className="text-center mb-15"
           >
@@ -56,12 +65,12 @@ const Layer2 = () => {
         </div>
 
         {/* RIGHT COLUMN – Momos + Pizza */}
-        <div className="flex flex-col items-end ">
+        <div className="flex flex-col items-end">
           <motion.img
             src="/layer2.2.avif"
             alt="momos"
             initial={{ x: "100vw", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            animate={sInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 1.2, ease: "easeOut" }}
           />
 
@@ -71,7 +80,7 @@ const Layer2 = () => {
             src="/layer2.4.avif"
             alt="pizza"
             initial={{ x: "100vw", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            animate={sInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 1.4, ease: "easeOut" }}
             className="w-80"
           />
@@ -80,13 +89,9 @@ const Layer2 = () => {
       </div>
 
       {/* Stats Box */}
-      <div className='relative flex justify-center mt-5 pb-24'>
-        <div className="
-          flex gap-5 items-center justify-center 
-          bg-white border border-gray-100 
-          shadow-md shadow-gray-500 
-          rounded-2xl px-6 py-4
-        ">
+      <div className="relative flex justify-center mt-5 pb-24">
+        <div className="flex gap-5 items-center justify-center bg-white border border-gray-100 shadow-md shadow-gray-500 rounded-2xl px-6 py-4">
+
           <div className="flex items-center">
             <div className="p-2">
               <h1 className="text-2xl font-bold text-violet-500 lg:text-3xl 2xl:text-4xl">
@@ -112,15 +117,18 @@ const Layer2 = () => {
               <h1 className="text-2xl font-bold text-violet-500 lg:text-3xl 2xl:text-4xl">
                 3 Billion+
               </h1>
-              <p className="text-slate-500 md:text-base lg:text-lg">orders delivered</p>
+              <p className="text-slate-500 md:text-base lg:text-lg">
+                orders delivered
+              </p>
             </div>
             <img src="/calander.avif" alt="calendar" className="w-12" />
           </div>
+
         </div>
       </div>
 
     </div>
-  )
-}
+  );
+};
 
 export default Layer2;

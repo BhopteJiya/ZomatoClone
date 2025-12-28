@@ -10,6 +10,10 @@ import { useAuth } from "../../Context/AuthContext";
 import LoginModal from "../Login/LoginModel";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ProfileDropdown from "./ProfileDropdown";
+import { useNavigate } from "react-router-dom";
+import Searchbar from "../Search/Searchbar";
+import { restaurants } from "../../assets/assets";
+
 
 
 const Navbar = () => {
@@ -21,7 +25,7 @@ const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
-
+  const nav = useNavigate();
 
 
   return (
@@ -52,7 +56,7 @@ const Navbar = () => {
               src={blackLogo}
               alt="Zomato"
               className="h-8 cursor-pointer"
-              onClick={()=>nav("")}
+              onClick={() => nav("/")}
             />
           </div>
 
@@ -81,14 +85,10 @@ const Navbar = () => {
               </div>
 
               {/* SEARCH */}
-              <div className="flex items-center gap-2 px-3 flex-1">
-                <SearchIcon className="text-gray-500 text-lg" />
-                <input
-                  type="text"
-                  placeholder="Search for restaurant, cuisine or a dish"
-                  className="flex-1 text-sm outline-none"
-                />
+              <div className="flex-1 px-3">
+                <Searchbar data={restaurants} />
               </div>
+
             </div>
           </div>
 
@@ -149,15 +149,10 @@ const Navbar = () => {
           </div>
 
           {/* SEARCH */}
-          <div className="flex items-center gap-2 border border-gray-300
-                    rounded-lg h-12 px-3 bg-white">
-            <SearchIcon className="text-gray-500 text-lg" />
-            <input
-              type="text"
-              placeholder="Search for restaurant, cuisine or a dish"
-              className="flex-1 text-sm outline-none"
-            />
+          <div className="border border-gray-300 rounded-lg h-12 px-3 bg-white">
+            <Searchbar data={restaurants} />
           </div>
+
         </div>
       </nav>
 
@@ -204,17 +199,17 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-            <div className="flex items-center justify-between"  
-            onClick={() => setShowDropdown(!showDropdown)}>
+            <div className="flex items-center justify-between"
+              onClick={() => setShowDropdown(!showDropdown)}>
               <div className="flex items-center gap-2">
                 <AccountCircleIcon sx={{ fontSize: 28, color: "#6b7280" }} />
                 <span className="font-medium capitalize">
                   {user.name}
                 </span>
-                 <ArrowDropDownIcon
-      sx={{ fontSize: 22, color: "#6b7280" }}
-    />
-              
+                <ArrowDropDownIcon
+                  sx={{ fontSize: 22, color: "#6b7280" }}
+                />
+
               </div>
 
               <button
@@ -226,11 +221,11 @@ const Navbar = () => {
               >
                 Logout
               </button>
-               {showDropdown && (
-                  <ProfileDropdown onClose={() => setShowDropdown(false)} />
-                )}
+              {showDropdown && (
+                <ProfileDropdown onClose={() => setShowDropdown(false)} />
+              )}
             </div>
-            
+
           )}
         </div>
 
