@@ -2,6 +2,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { useAuth } from "../../Context/AuthContext";
 import EmailIcon from '@mui/icons-material/Email';
+import { toast } from "react-toastify";
 
 const LoginModal = ({ onClose }) => {
   const { login } = useAuth();
@@ -9,6 +10,10 @@ const LoginModal = ({ onClose }) => {
 
   const handleLogin = () => {
     if (!email) return;
+
+       toast.success("Login successful ", {
+    position: "top-right",
+  });
 
     login({
       email,

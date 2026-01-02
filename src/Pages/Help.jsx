@@ -1,11 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Navbar from "../Component/Navbar/Navbar";
+import HomeFooter from "../Component/Footer/HomeFooter";
+
 
 
 const Help = () => {
   const nav=useNavigate();
   return (
+    <>
+  <Navbar></Navbar>
     <div className="mx-4 md:mx-10 lg:mx-24 mt-8">
        <div className='p-3' onClick={() => nav("/home")}>
         <ArrowBackIcon sx={{ fontSize: 20, color: "gray" }} />
@@ -62,6 +67,8 @@ const Help = () => {
 
       </div>
     </div>
+   <HomeFooter></HomeFooter>
+      </>
   );
 };
 

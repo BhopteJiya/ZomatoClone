@@ -1,5 +1,8 @@
+
+
+
 export const restaurants = [
-  {
+{
     id: 1,
     name: "Spice Villa",
     image:
@@ -7,8 +10,9 @@ export const restaurants = [
     rating: 4.3,
     price: 800,
     cuisine: ["North Indian", "Chinese"],
-    address: "Civil Lines, Nagpur",
+    address: " Civil Lines, Nagpur",
     distance: "2.1 km",
+    mobile: "9876543210",
   },
   {
     id: 2,
@@ -391,6 +395,47 @@ export const restaurants = [
 
 ];
 
+export const enhancedRestaurants = restaurants.map((res, index) => ({
+  ...res,
+
+  // convert single image → multiple images
+  images: [
+    res.image,
+    "https://images.unsplash.com/photo-1555992336-03a23c7b20ee",
+    "https://images.unsplash.com/photo-1559339352-11d035aa65de",
+    "https://images.unsplash.com/photo-1600891964092-4316c288032e"
+  ],
+
+  // structured rating
+  rating: {
+    value: res.rating,
+    count: 800 + index * 37   // fake but realistic
+  },
+
+  // detailed address
+  address: {
+    short: res.address,
+    full: `${res.address}, Maharashtra 44000${index % 10}, Near Main Road, near MH10 AB ${100 + index}`
+  },
+
+  // mobile number for all
+  mobile: `98${Math.floor(10000000 + Math.random() * 89999999)}`,
+
+  // more cuisines added
+  cuisine: [...res.cuisine, "Fast Food", "Beverages"],
+
+  // opening-closing time
+  timing: {
+    open: "11:00 AM",
+    close: "11:30 PM"
+  },
+
+  priceForTwo: res.price
+}));
+
+
+
+
 export const Places =[
  
   {
@@ -555,3 +600,78 @@ export const Places =[
   },
 ];
 
+
+
+
+export const review = [
+  {
+    id: 1,
+    name: "Amit Sharma",
+    rating: 4.5,
+    date: "2 days ago",
+    comment: "Amazing food and great service.The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a provided. Overall, it’s a great place to enjoy a meal with family or friends. The ambience was very pleasant.",
+  },
+  {
+    id: 2,
+    name: "Priya Verma",
+    rating: 5,
+    date: "1 week ago",
+    comment: "Absolutely loved the taste. Worth every penny!The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a good variety of options.",
+  },
+  {
+    id: 3,
+    name: "Rohit Singh",
+    rating: 4,
+    date: "3 days ago",
+    comment: "The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a good variety of options, and the prices are reasonable for the quality provided. Overall, it’s a great place to enjoy a meal with family or friends. Good food, but waiting time was slightly long.",
+  },
+  {
+    id: 4,
+    name: "Neha Patel",
+    rating: 4.2,
+    date: "5 days ago",
+    comment: "Nice ambiance and friendly staff. Will visit again. The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a good variety of options, and the prices are reasonable for the quality provided. Overall, it’s a great place to enjoy a meal with family or friends.",
+  },
+  {
+    id: 5,
+    name: "Kunal Mehta",
+    rating: 3.8,
+    date: "1 week ago",
+    comment: "Food was good but pricing is slightly high.The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a good variety of options, and the prices are reasonable for the quality provided. Overall, it’s a great place to enjoy a meal with family or friends.",
+  },
+  {
+    id: 6,
+    name: "Sneha Joshi",
+    rating: 5,
+    date: "2 weeks ago",
+    comment: "Best restaurant in town.The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a good variety of options, and the prices are reasonable for the quality provided. Overall, it’s a great place to enjoy a meal with family or friends. Highly recommended!",
+  },
+  {
+    id: 7,
+    name: "Vikas Yadav",
+    rating: 4,
+    date: "4 days ago",
+    comment: "Decent food and good hygiene.The food is well-prepared, flavorful, and served fresh. Staff members are polite, attentive, and quick to assist. The menu has a good variety of options, and the prices are reasonable for the quality provided. Overall, it’s a great place to enjoy a meal with family or friends.",
+  },
+  {
+    id: 8,
+    name: "Anjali Gupta",
+    rating: 4.7,
+    date: "6 days ago",
+    comment: "Loved the desserts! Very delicious 😍",
+  },
+  {
+    id: 9,
+    name: "Rahul Jain",
+    rating: 3.5,
+    date: "1 week ago",
+    comment: "Average experience. Can improve service.",
+  },
+  {
+    id: 10,
+    name: "Pooja Malhotra",
+    rating: 5,
+    date: "3 days ago",
+    comment: "Perfect place for family dinners.",
+  },
+];

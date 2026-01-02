@@ -7,7 +7,7 @@ const SearchBar = ({ data }) => {
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
-  //  Filter logic (safe)
+  //  Filter logic
   const filteredData = data.filter((item) => {
     const nameMatch = item.name
       ?.toLowerCase()
@@ -43,7 +43,9 @@ const SearchBar = ({ data }) => {
 
 
   return (
-    <div ref={searchRef} className="relative w-full h-full">
+    <div 
+    ref={searchRef} 
+    className="relative w-full h-full">
       {/* Input */}
       <div className="flex items-center gap-2 h-full">
         <SearchIcon className="text-gray-500" />
@@ -57,6 +59,7 @@ const SearchBar = ({ data }) => {
       </div>
 
       {/* Dropdown */}
+      
       {query && (
         <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-lg z-50 max-h-64 overflow-y-auto">
           {filteredData.length > 0 ? (

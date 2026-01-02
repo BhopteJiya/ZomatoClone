@@ -3,7 +3,7 @@ import discount from "../../assets/Collection-diningout/discountbanner.avif";
 const Banner = () => {
   return (
     <div>
-        <div className="flex flex-wrap m-6 gap-3 text-gray-600" >
+        <div className="flex flex-wrap m-6 gap-3 text-gray-600  " >
             <p className="border border-gray-500 w-fit p-2 rounded-lg" >Filter</p>
             <p className="border border-gray-500 w-fit p-2 rounded-lg">Offer</p>
             <p className="border border-gray-500 w-fit p-2 rounded-lg">Rating: 4.5+</p>

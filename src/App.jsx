@@ -7,9 +7,17 @@ import Help from "./Pages/Help";
 import Setting from "./Pages/Setting";
 import AllDetailedCollection from "./Pages/AllDetailedCollection";
 import RestaurantDetail from "./Pages/RestaurantDetail";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
+    <>
+     <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        pauseOnHover
+        theme="light"/>
     <BrowserRouter>
       <Routes>
 
@@ -27,6 +35,7 @@ const App = () => {
 
       </Routes>
     </BrowserRouter>
+    </>
   );
 };
 

@@ -1,19 +1,19 @@
-import React from "react";
-import { restaurants } from "../../assets/assets";
+import { restaurants } from "../../../../assets/assets";
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import { useNavigate } from "react-router-dom";
 
-const Restaurants = ({ data, limit, title = "Restaurants" }) => {
+const ExploreOtherRes = ({ title = "Top Restaurants" }) => {
 
-  const nav=useNavigate();
+  // 👇 ONLY 5 restaurants
+  const displayRestaurants = restaurants.slice(0, 5);
 
   return (
     <div>
-        <p className=" mt-5 mb-8 text-4xl " >Restaurants</p>
+      <p className="mt-5 mb-8 text-4xl">{title}</p>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer ">
-      {restaurants.map((res) => (
+     
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 cursor-pointer w-[720px] ">
+      {displayRestaurants.map((res) => (
           <div
           key={res.id}
           className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
@@ -58,8 +58,8 @@ const Restaurants = ({ data, limit, title = "Restaurants" }) => {
         </div>
       ))}
     </div>
-            </div>
+    </div>
   );
 };
 
-export default Restaurants;
+export default ExploreOtherRes;

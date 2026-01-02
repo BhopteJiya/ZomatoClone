@@ -18,7 +18,7 @@ import { restaurants } from "../../assets/assets";
 
 const Navbar = () => {
   const cities = City.getCitiesOfCountry("IN");
-  const [city, setCity] = useState("Mumbai");
+  const [city, setCity] = useState("Indore");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [mobile, setMobile] = useState(false);
   const { user, logout } = useAuth();
@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <>
       {/* NAVBAR */}
-      <nav className="w-full bg-white sticky top-0 z-50 shadow-sm cursor-pointer ">
+      <nav className="w-full bg-white  top-0 z-50 shadow-sm cursor-pointer ">
         <div className="flex items-center justify-between px-4 py-4 lg:px-6">
 
           {/* LEFT: Menu + Logo */}
@@ -42,11 +42,27 @@ const Navbar = () => {
                   <MenuIcon className="text-3xl text-gray-700" />
                 </button>
               ) : (
-                <div className="flex items-center gap-2 cursor-pointer">
-                  <AccountCircleIcon sx={{ fontSize: 28 }} />
-                  <span className="text-sm font-medium capitalize">
-                    {user.name}
-                  </span>
+                <div className="flex flex-col gap-3">
+                  {/* PROFILE CLICK */}
+                  <div
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => setShowDropdown(prev => !prev)}
+                  >
+                    <AccountCircleIcon sx={{ fontSize: 28, color: "#6b7280" }} />
+                    <span className="font-medium capitalize">{user.name}</span>
+                  </div>
+
+                  {/* DROPDOWN */}
+                  {showDropdown && (
+                    <div className="mt-2">
+                      <ProfileDropdown
+                        isMobile
+                        onClose={() => setShowDropdown(false)}
+                      />
+                    </div>
+                  )}
+
+
                 </div>
               )}
             </div>
@@ -157,17 +173,22 @@ const Navbar = () => {
       </nav>
 
 
+      {/* BACKDROP */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-40 lg:hidden"
-          onClick={() => setIsSidebarOpen(false)}
+          onClick={() => {
+            setIsSidebarOpen(false);
+            setShowDropdown(false);
+          }}
         />
       )}
 
-      {/* SIDEBAR (LEFT SLIDE) */}
+      {/* SIDEBAR */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white z-50 transform transition-transform duration-300 lg:hidden
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed top-0 left-0 h-full w-64 bg-white z-50 
+  transform transition-transform duration-300 lg:hidden
+  ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* HEADER */}
         <div className="flex items-center justify-between p-4 border-b">
@@ -177,9 +198,8 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* MENU ITEMS */}
-        {/* SIDEBAR AUTH */}
-        <div className="p-4 border-b">
+        {/* CONTENT */}
+        <div className="p-4">
           {!user ? (
             <div className="flex flex-col gap-3">
               <button
@@ -187,50 +207,43 @@ const Navbar = () => {
                   setShowLogin(true);
                   setIsSidebarOpen(false);
                 }}
-                className="w-full py-2 rounded-md bg-red-500 text-white font-medium"
+                className="w-full py-2 rounded-md bg-red-400 text-white font-medium"
               >
                 Log in
               </button>
 
-              <button
-                className="w-full py-2 rounded-md border border-gray-300 text-gray-700"
-              >
+              <button className="w-full py-2 rounded-md border border-gray-300 text-gray-700">
                 Sign up
               </button>
             </div>
           ) : (
-            <div className="flex items-center justify-between"
-              onClick={() => setShowDropdown(!showDropdown)}>
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-3">
+              {/* PROFILE CLICK */}
+              <div
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => setShowDropdown(prev => !prev)}
+              >
                 <AccountCircleIcon sx={{ fontSize: 28, color: "#6b7280" }} />
-                <span className="font-medium capitalize">
-                  {user.name}
-                </span>
-                <ArrowDropDownIcon
-                  sx={{ fontSize: 22, color: "#6b7280" }}
-                />
-
+                <span className="font-medium capitalize">{user.name}</span>
               </div>
 
-              <button
-                onClick={() => {
-                  logout();
-                  setIsSidebarOpen(false);
-                }}
-                className="text-sm text-red-500"
-              >
-                Logout
-              </button>
+              {/* DROPDOWN */}
               {showDropdown && (
-                <ProfileDropdown onClose={() => setShowDropdown(false)} />
+                <div className="mt-2">
+                  <ProfileDropdown
+                    isMobile
+                    onClose={() => setShowDropdown(false)}
+                  />
+                </div>
               )}
-            </div>
 
+
+            </div>
           )}
         </div>
-
-
       </div>
+
+
       {showLogin && (
         <LoginModal onClose={() => setShowLogin(false)} />
       )}

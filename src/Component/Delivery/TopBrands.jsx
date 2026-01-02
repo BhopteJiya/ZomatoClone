@@ -9,10 +9,13 @@ import tinkus from "../../assets/delivery-brands/tinkus.avif";
 import waffle from "../../assets/delivery-brands/waffle.avif";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const TopBrands = () => {
     const scrollRef = useRef(null);
+
+     const [showLeft, setShowLeft] = useState(false);
+      const [showRight, setShowRight] = useState(true);
 
     const brands = [
         { id: 1, label: "ApnaSweets", label2: "26 min", icon: apna },
@@ -40,6 +43,19 @@ const TopBrands = () => {
         });
     };
 
+     const handleScroll = () => {
+        const el = scrollRef.current;
+    
+        setShowLeft(el.scrollLeft > 0);
+        setShowRight(el.scrollLeft + el.clientWidth < el.scrollWidth);
+      };
+    
+      //  INITIAL CHECK
+      useEffect(() => {
+        handleScroll();
+      }, []);
+
+
     return (
         <div className="mb-8">
   {/* Heading */}
@@ -50,22 +66,28 @@ const TopBrands = () => {
   {/* Scroll Wrapper */}
   <div className="relative">
     {/* Left Arrow */}
-    <button
-      onClick={scrollLeft}
-      className="absolute left-0 top-1/2 -translate-y-1/2 z-10
-                 bg-gray-200 shadow-md rounded-full p-2 hover:scale-110 transition"
-    >
-      <ChevronLeftIcon />
-    </button>
+   {showLeft && (
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10
+                       bg-gray-200 shadow-md rounded-full p-2
+                       hover:scale-110 transition"
+          >
+            <ChevronLeftIcon />
+          </button>
+        )}
 
     {/* Right Arrow */}
-    <button
-      onClick={scrollRight}
-      className="absolute right-0 top-1/2 -translate-y-1/2 z-10
-                 bg-gray-200 shadow-md rounded-full p-2 hover:scale-110 transition"
-    >
-      <ChevronRightIcon />
-    </button>
+   {showRight && (
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10
+                       bg-gray-200 shadow-md rounded-full p-2
+                       hover:scale-110 transition"
+          >
+            <ChevronRightIcon />
+          </button>
+        )}
 
     {/* Scroll Container */}
     <div

@@ -30,7 +30,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
     overflow-x-auto md:overflow-x-visible
     whitespace-nowrap
     scrollbar-hide
-
+    
     px-4 sm:px-6 md:px-0
     -mx-4 sm:-mx-6 md:mx-0
   "
@@ -49,7 +49,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
       >
         {/* Icon */}
         <div
-          className={`rounded-full p-2 sm:p-3 transition-all ${
+          className={`rounded-full p-2 sm:p-3 transition-all cursor-pointer ${
             isActive ? "bg-red-300" : "bg-gray-200"
           }`}
         >
