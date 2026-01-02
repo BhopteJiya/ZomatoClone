@@ -9,6 +9,7 @@ const tabs = [
 ];
 
 const RestaurantNavbar = ({ activeTab, setActiveTab }) => {
+  
   return (
     <div className="top-16 z-40 bg-white border-b shadow-sm">
       <div className="max-w-6xl mx-auto flex gap-8 px-6 overflow-x-auto">

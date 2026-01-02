@@ -3,10 +3,16 @@ import { useParams } from "react-router-dom";
 import { enhancedRestaurants } from "../../../../assets/assets";
 import DirectionsIcon from '@mui/icons-material/Directions';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { toast } from "react-toastify";
 
 
 
 const Direction = () => {
+
+  const handleClick = () => {
+    toast.success("Restaurant Address copy to clipboard");
+  };
+
   const { id } = useParams(); 
 
    const restaurant = enhancedRestaurants.find(
@@ -30,7 +36,9 @@ const Direction = () => {
       </p>
 <div className="flex gap-5 mt-5" >
 <div>
-    <button className="border border-gray-300 px-4 py-2 rounded-md text-gray-700 " > <ContentCopyIcon/> Copy Url</button>
+    <button className="border border-gray-300 px-4 py-2 rounded-md text-gray-700 "
+   onClick={handleClick}
+   > <ContentCopyIcon/> Copy Url</button>
 </div>
 
 <div>

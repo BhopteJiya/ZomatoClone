@@ -13,6 +13,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import { useNavigate } from "react-router-dom";
 import Searchbar from "../Search/Searchbar";
 import { restaurants } from "../../assets/assets";
+import SignupModal from "../Login/SignupModal";
 
 
 
@@ -24,6 +25,8 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
 
   const nav = useNavigate();
 
@@ -117,7 +120,9 @@ const Navbar = () => {
                   className="text-gray-500 hover:text-black">
                   Log in
                 </button>
-                <button className="text-gray-500 hover:text-black">
+                <button
+                  onClick={() => setShowSignup(true)}
+                  className="text-gray-500 hover:text-black">
                   Sign up
                 </button>
               </>
@@ -212,7 +217,9 @@ const Navbar = () => {
                 Log in
               </button>
 
-              <button className="w-full py-2 rounded-md border border-gray-300 text-gray-700">
+              <button
+                onClick={() => setShowSignup(true)}
+                className="w-full py-2 rounded-md border border-gray-300 text-gray-700">
                 Sign up
               </button>
             </div>
@@ -247,7 +254,9 @@ const Navbar = () => {
       {showLogin && (
         <LoginModal onClose={() => setShowLogin(false)} />
       )}
-
+      {showSignup && (
+        <SignupModal onClose={() => setShowSignup(false)} />
+      )}
     </>
   );
 };

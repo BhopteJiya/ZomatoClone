@@ -8,16 +8,19 @@ export const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  const login = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);
-  };
+ const login = (userData, token) => {
+  localStorage.setItem("user", JSON.stringify(userData));
+  localStorage.setItem("token", token);
+  setUser(userData);
+};
 
-  const logout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-     toast.info("Logged out successfully ");
-  };
+ const logout = () => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  setUser(null);
+  toast.info("Logged out successfully");
+};
+
 
   return (
     <AuthContext.Provider

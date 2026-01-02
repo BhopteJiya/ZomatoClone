@@ -9,7 +9,7 @@ import Table from './Table'
 import Direction from './Direction'
 
 
-const Overview = () => {
+const Overview = ({setActiveTab} ) => {
   return (
    <section id="overview" className="py-10">
 <div   className="flex gap-6">
@@ -26,7 +26,7 @@ const Overview = () => {
      
       <div className="flex-1">
       <div className="sticky top-24 space-y-6">
-        <Table></Table>
+        <Table  setActiveTab={setActiveTab} ></Table>
         <Direction></Direction>
       </div>
     </div>

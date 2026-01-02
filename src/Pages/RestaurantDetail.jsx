@@ -20,7 +20,7 @@ const RestaurantDetail = () => {
       <RestaurantNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* CONTENT SWITCH */}
-      {activeTab === "overview" && <Overview />}
+      {activeTab === "overview" && <Overview  setActiveTab={setActiveTab} />}
       {activeTab === "reviews" && <Review />}
       {activeTab === "menu" && <div><Menu/></div>}
       {activeTab === "photos" && <div><Photosall/></div>}

@@ -14,10 +14,9 @@ import PeopleIcon from "@mui/icons-material/People";
 import { useNavigate } from "react-router-dom";
 import BookTableForm from "../../BookTableForm";
 
-const Table = () => {
+const Table = ({setActiveTab}) => {
   const [date, setDate] = useState(null);
   const [guests, setGuests] = useState("");
-  const nav = useNavigate();
 
   return (
     <div className="w-[480px] bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -85,7 +84,7 @@ const Table = () => {
               backgroundColor: "#c62828",
             },
           }}
-          onClick={()=>nav(<BookTableForm></BookTableForm>)}
+           onClick={() => setActiveTab("book")}
         >
           Book Table
         </Button>

@@ -14,9 +14,9 @@ import BottomContent from "./Static/Overview/BottomContent";
 import HomeFooter from "../Footer/HomeFooter";
 
 const timeSlots = {
-  breakfast: ["8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM"],
-  lunch: ["12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM"],
-  dinner: ["7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM"],
+  breakfast: ["10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM"],
+  lunch: ["12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM" ,"5:00 PM", "5:30 PM"],
+  dinner: ["7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM","9:00 PM","9:30 PM" ,"10:00 PM","10:30 PM"],
 };
 
 const BookTableForm = () => {
@@ -35,12 +35,12 @@ const BookTableForm = () => {
       <div className="p-6 border-b">
         <h2 className="text-2xl font-semibold">Book a Table</h2>
         <p className="text-gray-500 text-sm">
-          Select date, guests and time slot
+          Book table at your favorable time
         </p>
       </div>
 
       {/* BODY */}
-      <div className="p-6 space-y-6 space-x-6">
+      <div className="p-6 space-y-6 gap-6">
 
         {/* DATE */}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
